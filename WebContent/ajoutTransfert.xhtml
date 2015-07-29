@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head></h:head>
+<h:body>
+	<p:panel style="width:800px;margin:auto">
+		<h:form id="formAjoutTransfert">
+
+			<h3>
+				<h:outputText value="Un Nouveau Transfert" />
+			</h3>
+
+
+			<h:panelGrid columns="2" style="margin-left:130px" cellpadding="10">
+
+				<h:outputText value="" />
+				<h:outputText value="" />
+
+				<h:outputText value="Pays   :" />
+				<p:inputText id="pays" label="Pays"
+					value="#{transfertController.transfert.statut}" required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="pays"></p:message>
+
+				<h:outputText value="Operateur :" />
+				<p:selectOneMenu id="operateur" label="operateur"
+					value="#{transfertController.transfert.serveur}">
+					<f:selectItem itemLabel="Selectionner un operateur" itemValue="" />
+					<ui:remove>
+						<f:selectItems value="#{serveurController.findAllServers()}"
+							var="serveur" itemLabel="#{serveur.pays}" itemValue="#{serveur}" />
+					</ui:remove>
+					<ui:remove>
+						<f:converter converterId="serveurConverter" />
+					</ui:remove>
+				</p:selectOneMenu>
+				<h:outputText value="" />
+				<h:outputText value="" />
+
+				<h:outputText value="Montant :" />
+				<p:inputText id="montant" label="Montant"
+					value="#{transfertController.transfert.montant}" required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="montant"></p:message>
+
+				<h:outputText value="Numero Recepteur   :" />
+				<p:inputText id="numero" label="Numero"
+					value="#{transfertController.transfert.numero_recepteur}" required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="numero"></p:message>
+
+
+				<h:outputText value="" />
+				<p:commandButton value="Valider"
+					action="#{transfertController.ajouter()}"
+					update=":formAjoutTransfert" ajax="true" />
+
+
+				<h:outputText value="" />
+
+				<!-- 
+
+<p:commandButton value="Login" action="#{utilisateurController.authentification()}" ajax="false" />
+
+-->
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
