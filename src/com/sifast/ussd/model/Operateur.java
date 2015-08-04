@@ -13,16 +13,24 @@ import javax.persistence.OneToMany;
 @Entity
 public class Operateur implements Serializable {
 
+	@Override
+	public String toString() {
+		return "Operateur [nom_operateur=" + nom_operateur + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_operateur;
-
+	private String nom_operateur;
 	private String code_ussd;
-	@ManyToOne
-	private Serveur server;
 
+	// Les attributs du modèle relationnel
+	@ManyToOne
+	private Serveur serveur;
 	@OneToMany(mappedBy = "operateur")
 	private List<Dongle> dongles;
+	@OneToMany(mappedBy = "operateur")
+	private List<Transfert> transferts;
 
 	public int getId_operateur() {
 		return id_operateur;
@@ -38,6 +46,30 @@ public class Operateur implements Serializable {
 
 	public void setCode_ussd(String code_ussd) {
 		this.code_ussd = code_ussd;
+	}
+
+	public String getNom_operateur() {
+		return nom_operateur;
+	}
+
+	public void setNom_operateur(String nom_operateur) {
+		this.nom_operateur = nom_operateur;
+	}
+
+	public Serveur getServer() {
+		return serveur;
+	}
+
+	public void setServer(Serveur server) {
+		this.serveur = server;
+	}
+
+	public List<Dongle> getDongles() {
+		return dongles;
+	}
+
+	public void setDongles(List<Dongle> dongles) {
+		this.dongles = dongles;
 	}
 
 	@Override

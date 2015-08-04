@@ -16,9 +16,10 @@ public class Dongle implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_dongle;
-
 	private long numero;
+
 	// attributs du model relationnel
+
 	@ManyToOne
 	private Operateur operateur;
 	@OneToMany(mappedBy = "dongle")
@@ -64,6 +65,11 @@ public class Dongle implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Dongle [numero=" + numero + "]";
 	}
 
 }

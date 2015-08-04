@@ -16,12 +16,32 @@ public class Serveur implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_serveur;
 	private String adresse_ip;
+	private String pays;
 
 	@OneToMany(mappedBy = "serveur")
-	private List<Transfert> trabsferts;
-
-	@OneToMany(mappedBy = "server")
+	private List<Transfert> transferts;
+	@OneToMany(mappedBy = "serveur")
 	private List<Operateur> operateurs;
+
+	public Serveur() {
+
+	}
+
+	public List<Transfert> getTransferts() {
+		return transferts;
+	}
+
+	public void setTransferts(List<Transfert> transferts) {
+		this.transferts = transferts;
+	}
+
+	public List<Operateur> getOperateurs() {
+		return operateurs;
+	}
+
+	public void setOperateurs(List<Operateur> operateurs) {
+		this.operateurs = operateurs;
+	}
 
 	public int getId_serveur() {
 		return id_serveur;
@@ -64,4 +84,18 @@ public class Serveur implements Serializable {
 		}
 		return true;
 	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+
+	@Override
+	public String toString() {
+		return pays;
+	}
+
 }

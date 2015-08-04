@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<p:panel style="width:1200px;margin:auto">
+
+		<h:form>
+
+			<h3>
+				<h:outputText value="Liste DesTransferts" />
+			</h3>
+
+			<p:dataTable var="transfert"
+				value="#{transfertController.listTransferts }" style="margin:50px">
+				<p:column headerText="Id">
+					<h:outputText value="#{transfert.id_transfert}" />
+				</p:column>
+
+				<p:column headerText="Num_emet">
+					<h:outputText value="#{transfert.numero_emetteur}" />
+				</p:column>
+
+				<p:column headerText="Num_recept">
+					<h:outputText value="#{transfert.numero_recepteur}" />
+				</p:column>
+
+				<p:column headerText="Montant">
+					<h:outputText value="#{transfert.montant}" />
+				</p:column>
+				
+				
+				<p:column headerText="Statut">
+					<h:outputText value="#{transfert.statut}" />
+				</p:column>
+.
+			</p:dataTable>
+
+		</h:form>
+	</p:panel>
+</h:body>
+
+</html>

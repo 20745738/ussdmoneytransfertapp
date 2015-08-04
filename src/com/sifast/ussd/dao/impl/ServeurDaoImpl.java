@@ -9,6 +9,9 @@ import org.hibernate.cfg.Configuration;
 import com.sifast.ussd.dao.ServeurDao;
 import com.sifast.ussd.model.Serveur;
 
+/*
+ @ManagedBean(name = "serveurDao")
+ @SessionScoped*/
 public class ServeurDaoImpl implements ServeurDao {
 
 	private SessionFactory sessionFactory;
@@ -35,7 +38,7 @@ public class ServeurDaoImpl implements ServeurDao {
 	}
 
 	@Override
-	public Serveur findById(Serveur serveur) {
+	public Serveur findByObject(Serveur serveur) {
 
 		return session.get(Serveur.class, serveur);
 	}
@@ -50,6 +53,12 @@ public class ServeurDaoImpl implements ServeurDao {
 
 		return session.createCriteria(Serveur.class).list();
 
+	}
+
+	@Override
+	public Serveur findById(int id) {
+
+		return session.get(Serveur.class, id);
 	}
 
 }

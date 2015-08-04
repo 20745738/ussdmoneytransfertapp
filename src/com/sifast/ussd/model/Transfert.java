@@ -1,9 +1,9 @@
 package com.sifast.ussd.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,23 +17,24 @@ public class Transfert implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_transfert;
+	private long numero_emetteur;
+	private long numero_recepteur;
 
+	@Column(nullable = true)
+	private double montant;
 	/*
 	 * Exemple statut = {"SUCCES","ECHEC","EN ATTENTE"}
 	 */
-	private String statut;
 
-	private long numero_emetteur;
-	private long numero_recepteur;
-	private Date date_debut;
-	private Date date_fin;
-	private double montant;
+	private String statut = "statut";
 
 	// attributs du model relationnel
 	@ManyToOne
 	private Serveur serveur;
 	@ManyToOne
 	private Dongle dongle;
+	@ManyToOne
+	private Operateur operateur;
 	@OneToMany(mappedBy = "transfert")
 	private List<Ussd> ussds;
 
@@ -43,6 +44,30 @@ public class Transfert implements Serializable {
 
 	public void setId_transfert(int id_transfert) {
 		this.id_transfert = id_transfert;
+	}
+
+	public Dongle getDongle() {
+		return dongle;
+	}
+
+	public void setDongle(Dongle dongle) {
+		this.dongle = dongle;
+	}
+
+	public Operateur getOperateur() {
+		return operateur;
+	}
+
+	public void setOperateur(Operateur operateur) {
+		this.operateur = operateur;
+	}
+
+	public List<Ussd> getUssds() {
+		return ussds;
+	}
+
+	public void setUssds(List<Ussd> ussds) {
+		this.ussds = ussds;
 	}
 
 	public String getStatut() {
@@ -67,22 +92,6 @@ public class Transfert implements Serializable {
 
 	public void setNumero_recepteur(long numero_recepteur) {
 		this.numero_recepteur = numero_recepteur;
-	}
-
-	public Date getDate_debut() {
-		return date_debut;
-	}
-
-	public void setDate_debut(Date date_debut) {
-		this.date_debut = date_debut;
-	}
-
-	public Date getDate_fin() {
-		return date_fin;
-	}
-
-	public void setDate_fin(Date date_fin) {
-		this.date_fin = date_fin;
 	}
 
 	@Override

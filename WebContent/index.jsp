@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect(""); %>
+<% response.sendRedirect("ajoutTransfertAvance.xhtml"); %>
 
 </body>
 </html>

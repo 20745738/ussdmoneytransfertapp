@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head></h:head>
+<h:body>
+	<p:panel style="width:800px;margin:auto">
+		<h:form id="formAjoutTransfert">
+
+			<h3>
+				<h:outputText value="Un Nouveau Transfert" />
+			</h3>
+
+
+			<h:panelGrid columns="2" style="margin-left:130px" cellpadding="10">
+
+				<h:outputText value="" />
+				<h:outputText value="" />
+                
+                <h:outputText value="Pays :" />
+				<p:selectOneMenu id="serveur" label="serveur"
+					value="#{transfertController.transfert.serveur}">
+
+					<f:selectItem itemValue="#{null}" itemLabel="--select--" noSelectionOption="true" />
+					
+					<f:selectItems value="#{serveurController.findAllServers()}"
+						var="serv" itemLabel="#{serv.pays}" itemValue="#{serv}" style="width:230px" />
+						<p:ajax event="change" update="operateur" ajax="true"/>
+					<f:converter converterId="serveurConverter" />
+
+					
+				</p:selectOneMenu>
+				<h:outputText value="" />
+				<h:outputText value="" />
+				
+				<h:outputText value="Operateur :" />
+				<p:selectOneMenu id="operateur" label="operateur"
+					value="#{transfertController.transfert.operateur}"   style="width: 226px" >
+
+					<f:selectItems value="#{transfertController.transfert.serveur.operateurs}"
+						var="oper" itemLabel="#{oper.nom_operateur}" itemValue="#{oper}" />
+					<f:converter converterId="operateurConverter" />
+
+				</p:selectOneMenu>
+				<h:outputText value="" />
+				<h:outputText value="" />
+
+
+				<h:outputText value="Num Emetteur :" />
+				<p:inputText id="num_emetteur" label="Num Enumérateur"
+					value="#{transfertController.transfert.numero_emetteur}"
+					required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="num_emetteur"></p:message>
+				<h:outputText value="" />
+				<h:outputText value="" />
+
+
+				<h:outputText value="Numero Recepteur   :" />
+				<p:inputText id="numero" label="Numero"
+					value="#{transfertController.transfert.numero_recepteur}"
+					required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="numero"></p:message>
+
+
+
+				<h:outputText value="Montant :" />
+				<p:inputText id="montant" label="Montant"
+					value="#{transfertController.transfert.montant}" required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="montant"></p:message>
+
+				<h:outputText value="Statut   :" />
+				<p:inputText id="pays" label="statut"
+					value="#{transfertController.transfert.statut}" required="true"></p:inputText>
+				<h:outputText value="" />
+				<p:message for="pays"></p:message>
+
+				
+				<h:outputText value="" />
+				<h:outputText value="" />
+
+				<h:outputText value="" />
+				<p:commandButton value="Valider"
+					action="#{transfertController.ajouter()}"  ajax="tfalse">
+	
+				</p:commandButton>
+
+
+				<h:outputText value="" />
+
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
+

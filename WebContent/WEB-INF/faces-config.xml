@@ -5,4 +5,21 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+
+<converter>
+  <!-- la nomination lors d'appel : nom de l'instance -->
+   <converter-id>serveurConverter</converter-id>
+   <!-- le pointage sur la clsse correspendante du convertor   : nom de la classe-->
+   <converter-class>com.sifast.ussd.converter.ServeurConverter</converter-class>
+</converter>
+
+<converter>
+  <!-- la nomination lors d'appel : nom de l'instance -->
+   <converter-id>operateurConverter</converter-id>
+   <!-- le pointage sur la clsse correspendante du convertor   : nom de la classe-->
+   <converter-class>com.sifast.ussd.converter.OperateurConverter</converter-class>
+</converter>
+
+
+
 </faces-config>
